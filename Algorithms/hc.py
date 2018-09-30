@@ -78,13 +78,13 @@ def hillC (maxTry, chessboard) :
 	
 
 # Caller function	
-def Caller (chessboard) :
-	# MaxTry = input("Masukan Maksimum Try : ")
-	maxTry = 10
-	
-	Result = hillC(maxTry, chessboard)
-
-chessboard = BoardHandler.createChessboard()
-Caller(chessboard)
+# def Caller (chessboard) :
+# 	# MaxTry = input("Masukan Maksimum Try : ")
+# 	maxTry = 10
+#
+# 	Result = hillC(maxTry, chessboard)
+#
+# chessboard = BoardHandler.createChessboard()
+# Caller(chessboard)
 
 
