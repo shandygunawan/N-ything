@@ -1,11 +1,11 @@
 # check if a position is inside the board
-def checkBoundary(i,j):
+def checkBoundary(i, j):
     return i >= 0 and j >= 0 and i < 8 and j < 8
 
 
 # Check box
 def checkBox(chessBoard, row, col):
-    if chessBoard[row][col] != ('.', ".") :
+    if chessBoard[row][col] != ('.', "."):
         return True
     else:
         return False
@@ -18,20 +18,20 @@ def checkHorizontalConflict(chessBoard, row, col, color):
     # Check left
     for j in range(col-1, -1, -1):
         if checkBox(chessBoard, row, j):
-            if (color == chessBoard[row][j][1]) :
+            if color == chessBoard[row][j][1]:
                 countSame += 1
                 break
-            else :
+            else:
                 countDiff += 1
                 break
 
     # Check right
     for j in range(col+1, len(chessBoard)):
         if checkBox(chessBoard, row, j):
-            if (color == chessBoard[row][j][1]) :
+            if color == chessBoard[row][j][1]:
                 countSame += 1
                 break
-            else :
+            else:
                 countDiff += 1
                 break
 
@@ -45,20 +45,20 @@ def checkVerticalConflict(chessBoard, row, col, color):
     # check up
     for i in range(row-1, -1, -1):
         if checkBox(chessBoard, i, col):
-            if (color == chessBoard[i][col][1]) :
+            if color == chessBoard[i][col][1]:
                 countSame += 1
                 break
-            else :
+            else:
                 countDiff += 1
                 break
 
     # check down
     for i in range(row+1, len(chessBoard)):
         if checkBox(chessBoard, i, col):
-            if (color == chessBoard[i][col][1]) :
+            if color == chessBoard[i][col][1]:
                 countSame += 1
                 break
-            else :
+            else:
                 countDiff += 1
                 break
 
@@ -75,10 +75,10 @@ def checkDiagonalConflict(chessBoard, row, col, color):
     i = row-1
     for j in range(col-1, -1, -1):
         if checkBoundary(i, j) and checkBox(chessBoard, i, j):
-            if (color == chessBoard[i][j][1]) :
+            if color == chessBoard[i][j][1]:
                 countSame += 1
                 break
-            else :
+            else:
                 countDiff += 1
                 break
         else:
@@ -88,10 +88,10 @@ def checkDiagonalConflict(chessBoard, row, col, color):
     i = row-1
     for j in range(col+1, size):
         if checkBoundary(i, j) and checkBox(chessBoard, i, j):
-            if (color == chessBoard[i][j][1]) :
+            if color == chessBoard[i][j][1]:
                 countSame += 1
                 break
-            else :
+            else:
                 countDiff += 1
                 break
         else:
@@ -101,10 +101,10 @@ def checkDiagonalConflict(chessBoard, row, col, color):
     i = row+1
     for j in range(col-1, -1, -1):
         if checkBoundary(i, j) and checkBox(chessBoard, i, j):
-            if (color == chessBoard[i][j][1]) :
+            if color == chessBoard[i][j][1]:
                 countSame += 1
                 break
-            else :
+            else:
                 countDiff += 1
                 break
         else:
@@ -114,10 +114,10 @@ def checkDiagonalConflict(chessBoard, row, col, color):
     i = row+1
     for j in range(col+1, size):
         if checkBoundary(i, j) and checkBox(chessBoard, i, j):
-            if (color == chessBoard[i][j][1]) :
+            if color == chessBoard[i][j][1]:
                 countSame += 1
                 break
-            else :
+            else:
                 countDiff += 1
                 break
         else:
@@ -170,10 +170,10 @@ def checkKnightConflict(chessBoard, row, col, color):
 
         if checkBoundary(y, x):
             if checkBox(chessBoard, y, x):
-                if (color == chessBoard[y][x][1]) :
+                if color == chessBoard[y][x][1]:
                     countSame += 1
                     break
-                else :
+                else:
                     countDiff += 1
                     break
 
@@ -192,22 +192,22 @@ def conflictChecker(chessBoard):
 
     for row in range(size):
         for col in range(size):
-            if chessBoard[row][col][0] == ("ROOK"):  # ROOK
+            if chessBoard[row][col][0] == "ROOK":  # ROOK
                 countSame, countDiff = rookConflictChecker(chessBoard, row, col)
                 rookSameConflict += countSame
                 rookDiffConflict += countDiff
 
-            elif chessBoard[row][col][0] == ("BISHOP"):  # BISHOP
+            elif chessBoard[row][col][0] == "BISHOP":  # BISHOP
                 countSame, countDiff = bishopConflictChecker(chessBoard, row, col)
                 bishopSameConflict += countSame
                 bishopDiffConflict += countDiff
 
-            elif chessBoard[row][col][0] == ("QUEEN"):  # QUEEN
+            elif chessBoard[row][col][0] == "QUEEN":  # QUEEN
                 countSame, countDiff = queenConflictChecker(chessBoard, row, col)
                 queenSameConflict += countSame
                 queenDiffConflict += countDiff
 
-            elif chessBoard[row][col][0] == ("KNIGHT"):  # KNIGHT
+            elif chessBoard[row][col][0] == "KNIGHT":  # KNIGHT
                 countSame, countDiff = knightConflictChecker(chessBoard, row, col)
                 knightSameConflict += countSame
                 knightDiffConflict += countDiff
@@ -216,12 +216,13 @@ def conflictChecker(chessBoard):
     totalDiffConflict = rookDiffConflict + knightDiffConflict + queenDiffConflict + bishopDiffConflict
 
     return totalSameConflict, totalDiffConflict, queenSameConflict, rookSameConflict, bishopSameConflict, knightSameConflict, +\
-            queenDiffConflict, rookDiffConflict , bishopDiffConflict , knightDiffConflict
+            queenDiffConflict, rookDiffConflict, bishopDiffConflict, knightDiffConflict
 
-def rookConflictChecker(chessBoard, row, col) :
+
+def rookConflictChecker(chessBoard, row, col):
     countSame = sameConflict = 0
     countDiff = diffConflict = 0
-    if chessBoard[row][col][1] == "WHITE" :
+    if chessBoard[row][col][1] == "WHITE":
         sameConflict, diffConflict = checkHorizontalConflict(chessBoard, row, col, "WHITE")
         countSame += sameConflict
         countDiff += diffConflict
@@ -238,10 +239,11 @@ def rookConflictChecker(chessBoard, row, col) :
 
     return countSame, countDiff
 
-def bishopConflictChecker(chessBoard, row, col) :
+
+def bishopConflictChecker(chessBoard, row, col):
     countSame = sameConflict = 0
     countDiff = diffConflict = 0
-    if chessBoard[row][col][1] == "WHITE" :
+    if chessBoard[row][col][1] == "WHITE":
         sameConflict, diffConflict = checkDiagonalConflict(chessBoard, row, col, "WHITE")
         countSame += sameConflict
         countDiff += diffConflict
@@ -253,10 +255,10 @@ def bishopConflictChecker(chessBoard, row, col) :
     return countSame, countDiff
 
 
-def queenConflictChecker(chessBoard, row, col) :
+def queenConflictChecker(chessBoard, row, col):
     countSame = sameConflict = 0
     countDiff = diffConflict = 0
-    if chessBoard[row][col][1] == "WHITE" :
+    if chessBoard[row][col][1] == "WHITE":
         sameConflict, diffConflict = checkHorizontalConflict(chessBoard, row, col, "WHITE")
         countSame += sameConflict
         countDiff += diffConflict
@@ -266,7 +268,7 @@ def queenConflictChecker(chessBoard, row, col) :
         sameConflict, diffConflict = checkDiagonalConflict(chessBoard, row, col, "WHITE")
         countSame += sameConflict
         countDiff += diffConflict
-    else : 
+    else:
         sameConflict, diffConflict = checkHorizontalConflict(chessBoard, row, col, "BLACK")
         countSame += sameConflict
         countDiff += diffConflict
@@ -280,10 +282,10 @@ def queenConflictChecker(chessBoard, row, col) :
     return countSame, countDiff
 
 
-def knightConflictChecker(chessBoard, row, col) :
+def knightConflictChecker(chessBoard, row, col):
     countSame = sameConflict = 0
     countDiff = diffConflict = 0
-    if chessBoard[row][col][1] == "WHITE" :
+    if chessBoard[row][col][1] == "WHITE":
         sameConflict, diffConflict = checkKnightConflict(chessBoard, row, col, "WHITE")
         countSame += sameConflict
         countDiff += diffConflict
@@ -294,7 +296,3 @@ def knightConflictChecker(chessBoard, row, col) :
 
     return countSame, countDiff
 
-       
-def conflictCheckerB(chessBoard):
-    size = len(chessBoard)
-    totalConflict = queenConflict = rookConflict = bishopConflict = knightConflict = 0

@@ -18,7 +18,7 @@ def printChessBoard(chessBoard):
         print("ChessBoard is empty! You have to create it first.")
         return
 
-    size = len(chessBoard) # size = 8
+    size = len(chessBoard)  # size = 8
     for row in range(size):
         for col in range(size):
 
@@ -80,8 +80,9 @@ def printChessBoard(chessBoard):
 
 
 def printConflictAmount(chessBoard):
-    totalA, totalB, queenA, rookA, bishopA, knightA, queenB, rookB, bishopB, knightB = Checker.conflictChecker(chessBoard)
-    #totalA, queenA, rookA, bishopA, knightA = Checker.conflictChecker(chessBoard)
+    totalA, totalB, queenA, rookA, bishopA, knightA, queenB, rookB, bishopB, knightB =\
+        Checker.conflictChecker(chessBoard)
+    # totalA, queenA, rookA, bishopA, knightA = Checker.conflictChecker(chessBoard)
     # totalB, queenB, rookB, bishopB, knightB = Checker.conflictCheckerB(chessBoard)
 
     print("Total conflict A : " + str(totalA))
@@ -99,10 +100,11 @@ def printConflictAmount(chessBoard):
     # print("  Knight : " + str(knightB))
 
 
-def printSolutionToFile(chessBoard, type):
+def printSolutionToFile(chessBoard, solType):
     timestr = time.strftime("%Y%m%d-%H%M%S")
-    outfile = open("Solutions/" + timestr + "-" + type + ".txt", "w")
-    totalA, totalB, queenA, rookA, bishopA, knightA, queenB, rookB, bishopB, knightB = Checker.conflictChecker(chessBoard)
+    outfile = open("Solutions/" + timestr + "-" + solType + ".txt", "w")
+    totalA, totalB, queenA, rookA, bishopA, knightA, queenB, rookB, bishopB, knightB =\
+        Checker.conflictChecker(chessBoard)
     size = len(chessBoard)
     
     for row in range(size):

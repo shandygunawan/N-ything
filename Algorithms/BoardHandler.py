@@ -68,15 +68,17 @@ def createPiecesList(chessBoard):
 
     return piecesList
 
+
 # Create list of pieces from chess board with positions of each
-def createPiecesListWithPos(chessBoard) :
+def createPiecesListWithPos(chessBoard):
     size = len(chessBoard)
     piecesWithLoc = []
-    for row in range(size) :
-        for col in range(size) :
-            if (chessBoard[row][col] != ('.',".")) :
-                piecesWithLoc.append([chessBoard[row][col][0],chessBoard[row][col][1],col,row])
+    for row in range(size):
+        for col in range(size):
+            if chessBoard[row][col] != ('.', "."):
+                piecesWithLoc.append([chessBoard[row][col][0], chessBoard[row][col][1], col, row])
     return piecesWithLoc
+
 
 # Randomizes chess pieces' position
 def randomizer(chessBoard, chessList):
@@ -92,9 +94,10 @@ def randomizer(chessBoard, chessList):
 
         fillBoard(chessBoard, row, col, piece[0], piece[1])
 
+
 # Random chess piece and return all position of the piece 
 # Use for genetic algorithm
-def random_genetic(chessBoard, chessList) :
+def random_genetic(chessBoard, chessList):
     size = 8
     for i in range(size):
         col = []
@@ -111,30 +114,32 @@ def random_genetic(chessBoard, chessList) :
             if chessBoard[row][col] == ('.', "."):
                 break
 
-        positionList.append([[row,col], piece[0], piece[1]])
+        positionList.append([[row, col], piece[0], piece[1]])
         fillBoard(chessBoard, row, col, piece[0], piece[1])
 
     return positionList
 
-def updateBoard(chessBoard, chessList) :
+
+def updateBoard(chessBoard, chessList):
     clearBoard(chessBoard)
-    for piece in chessList :
+    for piece in chessList:
         fillBoard(chessBoard, piece[0][0], piece[0][1], piece[1], piece[2])
 
-def findPossibleMoves(chessPiece, chessBoard) :
+
+def findPossibleMoves(chessPiece, chessBoard):
     # Finding all possible moves of a piece on the chessboard
     # chessPiece must contain [('PIECE TYPE') , ('PIECE COLOUR'), pieceColumnNumber, pieceRowNumber]
     # Use createPieceListWithPos
     possMoves = []
 
-    if (chessPiece[0] == "KNIGHT") :
+    if chessPiece[0] == "KNIGHT":
         possMoves.extend(knightMoves(chessPiece, chessBoard))
-    elif (chessPiece[0] == 'BISHOP') :
+    elif chessPiece[0] == 'BISHOP':
         possMoves.extend(diagonalMoves(chessPiece, chessBoard))
-    elif (chessPiece[0] == 'ROOK') :
+    elif chessPiece[0] == 'ROOK':
         possMoves.extend(horizontalMoves(chessPiece, chessBoard))
         possMoves.extend(verticalMoves(chessPiece, chessBoard))
-    elif (chessPiece[0] == 'QUEEN') :
+    elif chessPiece[0] == 'QUEEN':
         possMoves.extend(horizontalMoves(chessPiece, chessBoard))
         possMoves.extend(verticalMoves(chessPiece, chessBoard))
         possMoves.extend(diagonalMoves(chessPiece, chessBoard))
@@ -142,31 +147,32 @@ def findPossibleMoves(chessPiece, chessBoard) :
 
 
 # Finding possible horizontal moves
-def horizontalMoves(chessPiece, chessBoard) :
+def horizontalMoves(chessPiece, chessBoard):
     hMoves = []
     rightBound = False
     leftBound = False
     # Finding moves for left hand side
     x = chessPiece[2] - 1
     y = chessPiece[3]
-    while not leftBound and x >= 0 :
-        if (chessBoard[y][x][0] == '.') :
-            hMoves.append([x,y])
+    while not leftBound and x >= 0:
+        if chessBoard[y][x][0] == '.':
+            hMoves.append([x, y])
             x -= 1
-        else :
+        else:
             leftBound = True
     # Finding moves for right hand side
     x = chessPiece[2] + 1
-    while not rightBound and x <= 7 :
-        if (chessBoard[y][x][0] == '.') :
-            hMoves.append([x,y])
+    while not rightBound and x <= 7:
+        if chessBoard[y][x][0] == '.':
+            hMoves.append([x, y])
             x += 1
-        else :
+        else:
             rightBound = True
     return hMoves
 
+
 # Finding possible diagonal moves
-def diagonalMoves(chessPiece, chessBoard) :
+def diagonalMoves(chessPiece, chessBoard):
     dMoves = []
     northWestBound = False
     northEastBound = False
@@ -176,51 +182,52 @@ def diagonalMoves(chessPiece, chessBoard) :
     # Finding moves to the northWest
     x = chessPiece[2] - 1
     y = chessPiece[3] - 1
-    while not northWestBound and x >= 0 and y >= 0 :
-        if (chessBoard[y][x][0] == '.') :
-            dMoves.append([x,y])
+    while not northWestBound and x >= 0 and y >= 0:
+        if chessBoard[y][x][0] == '.':
+            dMoves.append([x, y])
             x -= 1
             y -= 1
-        else :
+        else:
             northWestBound = True
 
     # Finding moves to the northEast
     x = chessPiece[2] + 1
     y = chessPiece[3] - 1
-    while not northEastBound and x <= 7 and y >= 0 :
-        if (chessBoard[y][x][0] == '.') :
-            dMoves.append([x,y])
+    while not northEastBound and x <= 7 and y >= 0:
+        if chessBoard[y][x][0] == '.':
+            dMoves.append([x, y])
             x += 1
             y -= 1
-        else :
+        else:
             northEastBound = True
     
     # Finding moves to the southWest
     x = chessPiece[2] - 1
     y = chessPiece[3] + 1
-    while not southWestBound and x >= 0 and y <= 7 :
-        if (chessBoard[y][x][0] == '.') :
-            dMoves.append([x,y])
+    while not southWestBound and x >= 0 and y <= 7:
+        if chessBoard[y][x][0] == '.':
+            dMoves.append([x, y])
             x -= 1
             y += 1
-        else :
+        else:
             southWestBound = True
     
     # Finding moves to the southEast
     x = chessPiece[2] + 1
     y = chessPiece[3] + 1
-    while not southEastBound and x <= 7 and y <= 7 :
-        if (chessBoard[y][x][0] == '.') :
-            dMoves.append([x,y])
+    while not southEastBound and x <= 7 and y <= 7:
+        if chessBoard[y][x][0] == '.':
+            dMoves.append([x, y])
             x += 1
             y += 1
-        else :
+        else:
             southEastBound = True
 
     return dMoves
 
+
 # Finding possible vertical moves
-def verticalMoves(chessPiece, chessBoard) :
+def verticalMoves(chessPiece, chessBoard):
     vMoves = []
     upBound = False
     downBound = False
@@ -228,46 +235,47 @@ def verticalMoves(chessPiece, chessBoard) :
     # Finding moves up
     x = chessPiece[2]
     y = chessPiece[3] - 1
-    while not upBound and y >= 0 :
-        if (chessBoard[y][x][0] == '.') :
-            vMoves.append([x,y])
+    while not upBound and y >= 0:
+        if chessBoard[y][x][0] == '.':
+            vMoves.append([x, y])
             y -= 1
-        else :
+        else:
             upBound = True
 
     # Finding moves down
     y = chessPiece[3] + 1
-    while not downBound and y <= 7 :
-        if (chessBoard[y][x][0] == '.') :
-            vMoves.append([x,y])
+    while not downBound and y <= 7:
+        if chessBoard[y][x][0] == '.':
+            vMoves.append([x, y])
             y += 1
-        else :
+        else:
             downBound = True
     return vMoves
 
+
 # Finding possible knight moves
-def knightMoves(chessPiece, chessBoard) :
+def knightMoves(chessPiece, chessBoard):
     kMoves = []
     
     # Finding moves of a knight 
     x = chessPiece[2]
     y = chessPiece[3]
 
-    if x - 2 >= 0 and y - 1 >= 0 and chessBoard[y-1][x-2][0] == '.' :
-        kMoves.append([x-2,y-1])
-    if x - 2 >= 0 and y + 1 <= 7 and chessBoard[y+1][x-2][0] == '.' :
-        kMoves.append([x-2,y+1])
-    if x + 2 <= 7 and y - 1 >= 0 and chessBoard[y-1][x+2][0] == '.' :
-        kMoves.append([x+2,y-1])
-    if x + 2 <= 7 and y + 1 <= 7 and chessBoard[y+1][x+2][0] == '.' :
-        kMoves.append([x+2,y+1])
-    if x - 1 >= 0 and y - 2 >= 0 and chessBoard[y-2][x-1][0] == '.' :
-        kMoves.append([x-1,y-2])
-    if x - 1 >= 0 and y + 2 <= 7 and chessBoard[y+2][x-1][0] == '.' :
-        kMoves.append([x-1,y+2])
-    if x + 1 <= 7 and y - 2 >= 0 and chessBoard[y-2][x+1][0] == '.' :
-        kMoves.append([x+1,y-2])
-    if x + 1 <= 7 and y + 2 <= 7 and chessBoard[y+2][x+1][0] == '.' :
-        kMoves.append([x+1,y+2])
+    if x - 2 >= 0 and y - 1 >= 0 and chessBoard[y-1][x-2][0] == '.':
+        kMoves.append([x-2, y-1])
+    if x - 2 >= 0 and y + 1 <= 7 and chessBoard[y+1][x-2][0] == '.':
+        kMoves.append([x-2, y+1])
+    if x + 2 <= 7 and y - 1 >= 0 and chessBoard[y-1][x+2][0] == '.':
+        kMoves.append([x+2, y-1])
+    if x + 2 <= 7 and y + 1 <= 7 and chessBoard[y+1][x+2][0] == '.':
+        kMoves.append([x+2, y+1])
+    if x - 1 >= 0 and y - 2 >= 0 and chessBoard[y-2][x-1][0] == '.':
+        kMoves.append([x-1, y-2])
+    if x - 1 >= 0 and y + 2 <= 7 and chessBoard[y+2][x-1][0] == '.':
+        kMoves.append([x-1, y+2])
+    if x + 1 <= 7 and y - 2 >= 0 and chessBoard[y-2][x+1][0] == '.':
+        kMoves.append([x+1, y-2])
+    if x + 1 <= 7 and y + 2 <= 7 and chessBoard[y+2][x+1][0] == '.':
+        kMoves.append([x+1, y+2])
         
     return kMoves

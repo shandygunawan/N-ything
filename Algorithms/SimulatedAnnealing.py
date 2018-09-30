@@ -1,12 +1,12 @@
-from Algorithms import BoardHandler, Checker, hc
-from IO import Printer, Parser
+from Algorithms import BoardHandler, Checker
+from IO import Printer
 from random import randint
 import copy
 import math
 
 
 # Solve problem using Simulated Annealing algorithm
-def simulatedAnnealing(maxTry, chessBoard) :
+def simulatedAnnealing(maxTry, chessBoard):
     # Initialization
     mTry = iterator = maxTry
 
@@ -28,7 +28,7 @@ def simulatedAnnealing(maxTry, chessBoard) :
 
         randRow = randint(0, 7)
         randCol = randint(0, 7)
-        while tempBoard[randRow][randCol] != ('.', ".") :
+        while tempBoard[randRow][randCol] != ('.', "."):
             randRow = randint(0, 7) 
             randCol = randint(0, 7)
         tempBoard[randPiece[3]][randPiece[2]] = ('.', ".")
@@ -36,14 +36,14 @@ def simulatedAnnealing(maxTry, chessBoard) :
 
         ts1, td1, qs1, qd1, rs1, rd1, bs1, bd1, ks1, kd1 = Checker.conflictChecker(tempBoard)
         tempValue = ts1 - td1
-        if tempValue <= Value :
+        if tempValue <= Value:
             bestResult = copy.deepcopy(tempBoard)
             Value = tempValue
             improved += 1
-        elif tempValue > Value :
+        elif tempValue > Value:
             sigmoidFunc = math.floor(math.exp(-T)) * 100
-            randomNum = randint(0,100)
-            if sigmoidFunc > randomNum :
+            randomNum = randint(0, 100)
+            if sigmoidFunc > randomNum:
                 bestResult = copy.deepcopy(tempBoard)
                 Value = tempValue
                 accepted += 1
@@ -53,4 +53,3 @@ def simulatedAnnealing(maxTry, chessBoard) :
     print(accepted)
     Printer.printSolutionToFile(bestResult, "SimulatedAnnealing")
     return bestResult
-

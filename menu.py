@@ -29,20 +29,18 @@ menuItems =\
      "Solve with Genetic Algorithm",
      "Help Me",
      "Credit",
-     "Exit"
-    ]
+     "Exit"]
 
 
 def colorize(string, color):
-    if not color in colors:
+    if color not in colors:
         return string
 
     return colors[color] + string + '\033[0m'
 
 
 def credit():
-    S =\
-    """
+    S = """
     >> Created by:
     >>   Kevin Leonardo Limitius    13516049    Aku adalah Istriku Documenter
     >>   Christian Kevin Saputra    13516073    Genetic Algorithm Pioneer
@@ -52,9 +50,9 @@ def credit():
     """
     print(S)
 
-def help():
-    S =\
-    """
+
+def helpMe():
+    S = """
     >> HELP:
     >> 1. Created a new chess Board from pieces:
     >>      -> Program will create a random chess board based on pieces information.
@@ -98,6 +96,7 @@ def help():
     """
     print(S)
 
+
 def mainMenu():
     chessBoard = []
     while True:
@@ -136,7 +135,7 @@ def mainMenu():
             elif choice == 6:
                 Genetic.GeneticAlgorithm(BoardHandler.createPiecesList(chessBoard))
             elif choice == 7:
-                help()
+                helpMe()
             elif choice == 8:
                 credit()
             elif choice == 9:
