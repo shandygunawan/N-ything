@@ -2,6 +2,7 @@ from IO import Printer
 from Algorithms import BoardHandler
 from Algorithms import Genetic
 from Algorithms import hc
+from Algorithms import SimulatedAnnealing
 import os
 
 header = "\
@@ -84,7 +85,8 @@ def mainMenu():
                 maxTry = int(input(">> Enter maximum try : "))
                 Printer.printChessBoard(hc.hillC(maxTry, chessBoard))
             elif choice == 5:
-                Printer.printChessBoard(chessBoard)
+                maxTry = int(input(">> Enter maximum try : "))
+                Printer.printChessBoard(SimulatedAnnealing.simulatedAnnealing(maxTry, chessBoard))
             elif choice == 6:
                 Genetic.GeneticAlgorithm(BoardHandler.createPiecesList(chessBoard))
             elif choice == 7:
