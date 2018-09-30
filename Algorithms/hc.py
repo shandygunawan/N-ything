@@ -52,7 +52,8 @@ def evaluate(Neigbour, currentState) :
 	t1 = ts1 - td1
 	t2 = ts2 - td2
 	return t1 - t2
-		
+
+
 # Hill Climbing Algorithm
 def hillC (maxTry, chessboard) :
 	# Generate initial state
@@ -65,6 +66,7 @@ def hillC (maxTry, chessboard) :
 		# Compare current state with best neighbour, if current state is better return current state, 
 		if (evaluate(bestNeigbour, currentState) > 0) :
 			Printer.printChessBoard(currentState)
+			Printer.printSolutionToFile(currentState, "HillClimbing")
 			return currentState
 		Printer.printChessBoard(currentState)
 		# else assign current state with best neighbour
@@ -72,6 +74,7 @@ def hillC (maxTry, chessboard) :
 	
 	# Return current state if function HC cannot find maxima until try times
 	Printer.printChessBoard(currentState)
+	Printer.printSolutionToFile(currentState, "HillClimbing")
 	return currentState
 	
 	

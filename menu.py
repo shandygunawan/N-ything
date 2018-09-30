@@ -83,6 +83,7 @@ def mainMenu():
             elif choice == 4:
                 maxTry = int(input(">> Enter maximum try : "))
                 Printer.printChessBoard(hc.hillC(maxTry, chessBoard))
+
             elif choice == 5:
                 Printer.printChessBoard(chessBoard)
             elif choice == 6:
