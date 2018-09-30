@@ -27,6 +27,7 @@ menuItems =\
      "Solve with Hill-Climbing",
      "Solve with Simulated Annealing",
      "Solve with Genetic Algorithm",
+     "Help Me",
      "Credit",
      "Exit"
     ]
@@ -51,6 +52,51 @@ def credit():
     """
     print(S)
 
+def help():
+    S =\
+    """
+    >> HELP:
+    >> 1. Created a new chess Board from pieces:
+    >>      -> Program will create a random chess board based on pieces information.
+    >>      -> Use files named 'Pieces<number>.txt' as input from 'Inputs' folder."
+    >>      -> Using this options will overwrite previously created/loaded chess board.
+    >>
+    >> 2. Read a chess board:
+    >>      -> Program will read a chess board input and use it.
+    >>      -> Use files named 'Board<number>.txt' as input from 'Inputs' folder."
+    >>      -> Using this options will overwrite previously created/loaded chess board.
+    >>
+    >> 3. Show the chess board:
+    >>      -> Program will display chess board created from option 1 or loaded from option 2
+    >>      -> Total conflict A and B also displayed.
+    >>      -> Conflict A : Conflict between chess pieces with same color
+    >>      -> Conflict B : Conflict between chess pieces with different color
+    >>
+    >> 4. Solve with Hill-Climbing
+    >>      -> Solve created or loaded chess board with hill-climbing algorithm.
+    >>
+    >> 5. Solve with Simulated Annealing
+    >>      -> Solve created or loaded chess board with Simulated Annealing algorithm.
+    >>
+    >> 6. Solve with Genetic Algorithm
+    >>      -> Solve created or loaded chess board with genetic algorithm.
+    >>
+    >> 7. Help Me
+    >>      -> Shows information to help first-time users.
+    >>      -> Literally texts that you are reading right now.
+    >>
+    >> 8. Credit
+    >>      -> A group of remarkable people to fight the battle that you never could.
+    >>
+    >> 9. Exit
+    >>      -> Sayonara. Please watch an anime if you haven't today, you won't regret it.
+    >>
+    >>
+    >> NOTE:
+    >> -> Option 4, 5, 6 will output a result in 'Solutions' folder.
+    >> -> Option 4, 5, 6 don't change loaded or created chess board state from the initial state. 
+    """
+    print(S)
 
 def mainMenu():
     chessBoard = []
@@ -84,15 +130,16 @@ def mainMenu():
             elif choice == 4:
                 maxTry = int(input(">> Enter maximum try : "))
                 Printer.printChessBoard(hc.hillC(maxTry, chessBoard))
-
             elif choice == 5:
                 maxTry = int(input(">> Enter maximum try : "))
                 Printer.printChessBoard(SimulatedAnnealing.simulatedAnnealing(maxTry, chessBoard))
             elif choice == 6:
                 Genetic.GeneticAlgorithm(BoardHandler.createPiecesList(chessBoard))
             elif choice == 7:
-                credit()
+                help()
             elif choice == 8:
+                credit()
+            elif choice == 9:
                 exit(0)
             else:
                 print(">> That is not a valid input.")

@@ -76,9 +76,6 @@ def hillC (maxTry, chessboard) :
 	Printer.printChessBoard(currentState)
 	Printer.printSolutionToFile(currentState, "HillClimbing")
 	return currentState
-	
-	
-	
 
 # Caller function	
 # def Caller (chessboard) :

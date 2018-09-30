@@ -4,8 +4,8 @@ from random import randint
 import copy
 import math
 
-# Solve problem using Simulated Annealing algorithm
 
+# Solve problem using Simulated Annealing algorithm
 def simulatedAnnealing(maxTry, chessBoard) :
     # Initialization
     mTry = iterator = maxTry
@@ -19,7 +19,7 @@ def simulatedAnnealing(maxTry, chessBoard) :
     improved = accepted = 0
 
     # Outer loop, which loops the 
-    while iterator > 0 :
+    while iterator > 0:
         T = math.log(mTry - iterator + 1, math.exp(1))
         
         tempBoard = copy.deepcopy(bestResult)
@@ -51,5 +51,6 @@ def simulatedAnnealing(maxTry, chessBoard) :
         iterator -= 1
     print(improved)
     print(accepted)
+    Printer.printSolutionToFile(bestResult, "SimulatedAnnealing")
     return bestResult
 
