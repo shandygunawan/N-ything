@@ -1,12 +1,12 @@
-from Algorithms import BoardHandler, Checker, hc
-from IO import Printer, Parser
+from Algorithms import BoardHandler, Checker
+from IO import Printer
 from random import randint
 import copy
 import math
 
-# Solve problem using Simulated Annealing algorithm
 
-def simulatedAnnealing(maxTry, chessBoard) :
+# Solve problem using Simulated Annealing algorithm
+def simulatedAnnealing(maxTry, chessBoard):
     # Initialization
     mTry = iterator = maxTry
 
@@ -31,7 +31,7 @@ def simulatedAnnealing(maxTry, chessBoard) :
         # Randomizes a piece's position
         randRow = randint(0, 7)
         randCol = randint(0, 7)
-        while tempBoard[randRow][randCol] != ('.', ".") :
+        while tempBoard[randRow][randCol] != ('.', "."):
             randRow = randint(0, 7) 
             randCol = randint(0, 7)
         tempBoard[randPiece[3]][randPiece[2]] = ('.', ".")
@@ -48,9 +48,10 @@ def simulatedAnnealing(maxTry, chessBoard) :
             improved += 1
         # If the next state value is worse, accept with probability of it is higher than a random number
         elif tempValue > Value :
+
             sigmoidFunc = math.floor(math.exp(-T)) * 100
-            randomNum = randint(0,100)
-            if sigmoidFunc > randomNum :
+            randomNum = randint(0, 100)
+            if sigmoidFunc > randomNum:
                 bestResult = copy.deepcopy(tempBoard)
                 Value = tempValue
                 accepted += 1
@@ -62,5 +63,5 @@ def simulatedAnnealing(maxTry, chessBoard) :
     print(improved)
     # Result of accepted states
     print(accepted)
+    Printer.printSolutionToFile(bestResult, "SimulatedAnnealing")
     return bestResult
-
