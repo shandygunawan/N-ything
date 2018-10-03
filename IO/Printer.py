@@ -3,6 +3,7 @@ import os
 import time
 
 
+# Print files' name in 'Inputs' folder to help users.
 def printDir(path):
     fileList = os.listdir(path)
     print(">> List of input files:")
@@ -14,6 +15,7 @@ def printDir(path):
 # Print chessboard to screen
 def printChessBoard(chessBoard):
 
+    # Can not print if chess board is empty
     if not chessBoard:
         print("ChessBoard is empty! You have to create it first.")
         return
@@ -79,20 +81,25 @@ def printChessBoard(chessBoard):
     printConflictAmount(chessBoard)
 
 
+# Print amount of detected conflict to screen
 def printConflictAmount(chessBoard):
     totalA, totalB, queenA, rookA, bishopA, knightA, queenB, rookB, bishopB, knightB =\
         Checker.conflictChecker(chessBoard)
     # totalA, queenA, rookA, bishopA, knightA = Checker.conflictChecker(chessBoard)
     # totalB, queenB, rookB, bishopB, knightB = Checker.conflictCheckerB(chessBoard)
 
-    print("Total conflict A : " + str(totalA))
+    print(str(totalA) + " ", end='')
+    print(str(totalB))
+
+    # ------------------ FOR DEBUGGING -----------------
+    # print("Total conflict A : " + str(totalA))
     # print("Description:")
     # print("  Queen  : " + str(queenA))
     # print("  Rook   : " + str(rookA))
     # print("  Bishop : " + str(bishopA))
     # print("  Knight : " + str(knightA))
     # print("\n")
-    print("Total conflict B : " + str(totalB))
+    # print("Total conflict B : " + str(totalB))
     # print("Description:")
     # print("  Queen  : " + str(queenB))
     # print("  Rook   : " + str(rookB))
@@ -100,13 +107,23 @@ def printConflictAmount(chessBoard):
     # print("  Knight : " + str(knightB))
 
 
+# Output solution as file.
+# Result is saved in 'Solutions' folder.
 def printSolutionToFile(chessBoard, solType):
+    # Use now's date and time as filename
     timestr = time.strftime("%Y%m%d-%H%M%S")
+
+    # Create and write file
     outfile = open("Solutions/" + timestr + "-" + solType + ".txt", "w")
+
+    # Check amount of conflict from chess board final state
     totalA, totalB, queenA, rookA, bishopA, knightA, queenB, rookB, bishopB, knightB =\
         Checker.conflictChecker(chessBoard)
     size = len(chessBoard)
-    
+
+    # write to file
+    # Remember that chessboard elements is tuple.
+    # Tuple structure : (<TYPE>, <COLOR>)
     for row in range(size):
         for col in range(size):
 

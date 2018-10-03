@@ -1,0 +1,10 @@
+. . . . . . . .
+. . . K . . . .
+. k . . R . . .
+. b . . . . . .
+Q . . . r . . .
+. . K B B . . .
+. . q . . . R .
+. Q . . . . . .
+Total conflict A: 0
+Total conflict B: 26

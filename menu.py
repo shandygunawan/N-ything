@@ -46,7 +46,7 @@ def credit():
     >>   Christian Kevin Saputra    13516073    Genetic Algorithm Pioneer
     >>   Tanor Abraham Reyuko       13516088    Simulated Annealing Expert
     >>   Ahmad Faishol Huda         13516094    Hill Climber
-    >>   Shandy                     13516097    Main Menu Man, Board Lover, Conflict Searcher
+    >>   Shandy                     13516097    Main Menu Man, Board Lover, Low Salary Manager
     """
     print(S)
 
@@ -99,12 +99,15 @@ def helpMe():
 
 def mainMenu():
     chessBoard = []
+
+    # Clear screen
     while True:
         if os.name == 'nt':  # Windows
             os.system('cls')
         elif os.name == 'posix':  # Linux
             os.system('clear')
 
+        # Print header & menu options
         print(colorize(header, 'pink'))
         i = 1
         for item in menuItems:
@@ -145,6 +148,7 @@ def mainMenu():
         except (ValueError, IndexError):
             pass
 
+        # Users need to press enter to continue using program (refresh the display)
         while True:
             text = input("\n>> Press enter to continue.")
             if text == "":

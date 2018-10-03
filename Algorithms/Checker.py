@@ -123,38 +123,6 @@ def checkDiagonalConflict(chessBoard, row, col, color):
         else:
             i += 1
 
-    # check up
-    # counter = 0
-    # for i in range(row-1, -1, -1):
-    #     if counter == 2:
-    #         break
-    #
-    #     for j in range(size):
-    #         if counter == 2:
-    #             break
-    #
-    #         if abs(row - i) == abs(col - j) and chessBoard[i][j] != ('.', "."):
-    #             if chessBoard[i][j][1] == color:
-    #                 return True
-    #             else:
-    #                 counter += 1
-    #
-    # # check down
-    # counter = 0
-    # for i in range(row+1, size):
-    #     if counter == 2:
-    #         break
-    #
-    #     for j in range(size):
-    #         if counter == 2:
-    #             break
-    #
-    #         if abs(row - i) == abs(col - j) and chessBoard[i][j] != ('.', "."):
-    #             if chessBoard[i][j][1] == color:
-    #                 return True
-    #             else:
-    #                 counter += 1
-
     return countSame, countDiff
 
 

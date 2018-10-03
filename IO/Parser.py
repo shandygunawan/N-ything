@@ -1,3 +1,4 @@
+# Reader for pieces list type of input
 def readPiecesFile(filename):
     print(">> Reading file...\n")
     # Read per line & store to list
@@ -24,6 +25,7 @@ def readPiecesFile(filename):
     return piecesList
 
 
+# Reader for chess board type of input
 def readChessBoardFile(filename):
     print(">> Reading file...\n")
 
@@ -38,10 +40,13 @@ def readChessBoardFile(filename):
     # strip newline
     content = [x.strip() for x in content]
 
+    # Split spaces
     for chessRow in content:
         chessRowList = chessRow.split(" ")
         toAppend = []
 
+        # Fill corresponding file content to matrix as tuples
+        # tuple format: (<TYPE>, <COLOR>)
         for box in chessRowList:
             if box == '.':
                 toAppend.append(('.', "."))

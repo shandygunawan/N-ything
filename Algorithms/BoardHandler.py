@@ -2,6 +2,7 @@ from random import randint
 from IO import Parser
 
 
+# Create chessboard from pieces list
 def createChessboard():
     # create a chessboard
     chessBoard = []
@@ -22,6 +23,7 @@ def createChessboard():
     return chessBoard
 
 
+# Read chessboard from file input
 def readChessboard():
     # read file's content
     return Parser.readChessBoardFile("Inputs/" + input(">> Enter filename: "))
@@ -36,6 +38,7 @@ def clearBoard(chessBoard):
 
 
 # Fill board boxes with chess pieces
+# Tuple structure: (<TYPE>, <COLOR>)
 def fillBoard(chessBoard, row, col, pieceType, color):
     if color == "WHITE":
         if pieceType == "KNIGHT":
@@ -120,6 +123,7 @@ def random_genetic(chessBoard, chessList):
     return positionList
 
 
+# Update chess board with the newest position of pieces
 def updateBoard(chessBoard, chessList):
     clearBoard(chessBoard)
     for piece in chessList:
